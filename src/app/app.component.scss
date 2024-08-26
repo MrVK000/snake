@@ -6,18 +6,69 @@
   background-color: #f5e8ba;
 }
 
+h1 {
+  color: green;
+}
+
 .container {
   height: 97vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  // justify-content: center;
+  text-align: center;
 }
+
+.canvasContainer {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+}
+
 
 .gameBoard {
   border: 3px solid;
   margin: 1em;
+  width: 100%;
+  height: auto;
+  display: block;
 }
 
-
-.scoreBoardDiv
-{
+.scoreBoardDiv {
   font-size: 28px;
 }
 
+.buttonClass {
+  border-radius: 10px;
+  background-color: #0d6efd;
+  padding: 0.5em;
+  color: #ffffff;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  width: 4em;
+  margin: 10px;
+}
+
+.resetButtonDiv .buttonClass,
+.startButtonDiv .buttonClass {
+  background-color: #05ae73;
+}
+
+.buttonClass:hover {
+  box-shadow: 0px 0px 5px rgba(128, 128, 128, 0.7);
+  transition: all 0.2s;
+}
+
+@media screen and (min-width: 768px) and (max-width: 2560px) {
+
+  .canvasContainer {
+    max-width: 800px;
+  }
+  .controlButtonsDiv
+  {
+    display: none;
+  }
+}

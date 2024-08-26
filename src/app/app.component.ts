@@ -18,7 +18,7 @@ export class AppComponent {
   scoreValue: number = 0;
   WIDTH!: number;
   HEIGHT!: number;
-  UNIT: number = 20;
+  UNIT: number = 10;
   foodX!: number;
   foodY!: number;
   snake: ISnake[] = [
@@ -31,6 +31,7 @@ export class AppComponent {
   yVel: number = 0;
   active: boolean = true;
   started: boolean = false;
+  showRestart: boolean = false;
 
   constructor() {
     this.handleKeypress = this.handleKeypress.bind(this);
@@ -39,6 +40,7 @@ export class AppComponent {
   ngAfterViewInit(): void {
     window.addEventListener('keydown', this.handleKeypress);
     const canvas = this.gameBoard.nativeElement;
+    // this.UNIT = canvas.width/20;
     this.WIDTH = canvas.width;
     this.HEIGHT = canvas.height;
 
@@ -101,9 +103,9 @@ export class AppComponent {
         this.moveSnake();
         this.drawSnake();
         this.isGameOver();
-        if(this.started)
-        this.autoRepeat();
-      }, 300)
+        if (this.started)
+          this.autoRepeat();
+      }, 200)
     }
     else {
       this.clearBoard();
@@ -111,6 +113,7 @@ export class AppComponent {
       this.context.fillStyle = '#ffffff';
       this.context.textAlign = 'center';
       this.context.fillText('Game Over!!', this.WIDTH / 2, this.HEIGHT / 2);
+      this.showRestart = true;
     }
   }
 
@@ -144,6 +147,48 @@ export class AppComponent {
       case (this.snake[0].y >= this.HEIGHT):
         this.active = false;
         break;
+    }
+  }
+
+  restartGame() {
+    this.showRestart = false;
+    this.active = true;
+    this.started = false;
+    this.xVel = this.UNIT;
+    this.yVel = 0;
+    this.scoreValue = 0;
+    this.snake = [
+      { x: this.UNIT * 3, y: 0 },
+      { x: this.UNIT * 2, y: 0 },
+      { x: this.UNIT, y: 0 },
+      { x: 0, y: 0 },
+    ];
+    this.clearBoard();
+    this.createFood();
+    this.displayFood();
+    this.drawSnake();
+  }
+
+  navigation(type: string) {
+    if (type == 'space') {
+      this.started = true;
+      this.autoRepeat();
+    }
+    else if (type == 'up') {
+      this.xVel = 0;
+      this.yVel = -this.UNIT;
+    }
+    else if (type == 'right') {
+      this.xVel = this.UNIT;
+      this.yVel = 0;
+    }
+    else if (type == 'down') {
+      this.xVel = 0;
+      this.yVel = this.UNIT;
+    }
+    else if (type == 'left') {
+      this.xVel = -this.UNIT;
+      this.yVel = 0;
     }
   }
 

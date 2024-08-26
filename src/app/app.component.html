@@ -1,12 +1,36 @@
-
 <div class="container">
-  <div class="heading mt-2"><h2>{{title}}</h2></div>
-  <div class="infoDiv"><p>{{info}}</p></div>
+  <div class="heading mt-2">
+    <h1>{{title}}</h1>
+  </div>
+  <div class="infoDiv">
+    <p>{{info}}</p>
+  </div>
   <div class="canvasContainer">
-    <canvas #gameBoard class="gameBoard" width="500" height="500"></canvas>
-    <div class="scoreBoardDiv">Score: <span>{{scoreValue}}</span></div>
+    <!-- <canvas #gameBoard class="mobileGameBoard" width="200" height="200"></canvas> -->
+    <canvas #gameBoard class="gameBoard"></canvas>
+  </div>
+  <div class="scoreBoardDiv">
+    <p>Score: <span>{{scoreValue}}</span></p>
+  </div>
+
+  <div class="startButtonDiv" *ngIf="!showRestart">
+    <button class="buttonClass" (click)="navigation('space')">Start</button>
+  </div>
+
+  <div class="resetButtonDiv" *ngIf="showRestart">
+    <button class="buttonClass" (click)="restartGame()">Restart</button>
+  </div>
+
+  <div class="controlButtonsDiv">
+    <div class="upButtonDiv">
+      <button class="buttonClass" (click)="navigation('up')">Up</button>
+    </div>
+    <div class="leftRighButtonsDiv">
+      <button class="buttonClass" (click)="navigation('left')">Left</button>
+      <button class="buttonClass" (click)="navigation('right')">Right</button>
+    </div>
+    <div class="downButtonDiv">
+      <button class="buttonClass" (click)="navigation('down')">Down</button>
+    </div>
   </div>
 </div>
-
-
-
