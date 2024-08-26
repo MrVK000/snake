@@ -14,7 +14,7 @@ export class AppComponent {
   @ViewChild('gameBoard') gameBoard!: ElementRef<HTMLCanvasElement>;
   context!: CanvasRenderingContext2D;
   title: string = 'Snake Game';
-  info: string = 'Press space to pause or continue the game';
+  info: string = 'Press space to start the game';
   scoreValue: number = 0;
   WIDTH!: number;
   HEIGHT!: number;
