@@ -1,5 +1,5 @@
 {
-  "name": "sample",
+  "name": "snake",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",

@@ -118,7 +118,7 @@ export class AppComponent {
     if (event.keyCode == 32 && !this.started) {
       this.started = true;
       this.autoRepeat();
-      this.started = !this.started;
+      // this.started = !this.started;
     }
 
     if (event.key === 'ArrowUp' && this.yVel != this.UNIT) {
